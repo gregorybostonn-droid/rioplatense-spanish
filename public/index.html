@@ -244,6 +244,58 @@
       display: none;
     }
 
+    /* Study mode */
+    .study-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 4px; }
+    .study-desc { font-size: 0.85rem; color: #666; margin-bottom: 16px; }
+
+    .study-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+
+    .study-item {
+      padding: 12px 14px;
+      background: #f8f8f8;
+      border-radius: 10px;
+      border-left: 3px solid #5865f2;
+    }
+
+    .study-es {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .study-en { font-size: 0.88rem; color: #555; margin-bottom: 2px; }
+    .study-note-text { font-size: 0.77rem; color: #aaa; font-style: italic; }
+
+    .study-sentence-item {
+      padding: 12px 14px;
+      background: #f8f8f8;
+      border-radius: 10px;
+      border-left: 3px solid #43a047;
+      margin-bottom: 10px;
+    }
+
+    .study-sentence { font-size: 1rem; font-weight: 500; margin-bottom: 4px; }
+    .study-answer-line { font-size: 0.88rem; color: #555; margin-bottom: 2px; }
+
+    .start-quiz-btn {
+      width: 100%;
+      padding: 14px;
+      background: #5865f2;
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s;
+      margin-top: 4px;
+    }
+
+    .start-quiz-btn:hover { background: #4752c4; }
+
     /* Roleplay */
     .scenario-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 14px; }
 
@@ -412,6 +464,11 @@ let currentConjTrigger = null; // for stage 5
 let currentGrammarTopic = 1;
 let currentGrammarSentence = null;
 
+// Study mode flags — reset to true when switching level/stage/topic
+let vocabInStudy = true;
+let conjInStudy = true;
+let grammarInStudy = true;
+
 // Session
 let sessionCorrect = 0;
 let sessionTotal = 0;
@@ -501,6 +558,7 @@ function renderVocabSubBar(skipRender = false) {
     btn.textContent = `${unlocked ? '' : '🔒 '}L${i}: ${state.levels[i].name}`;
     if (unlocked) {
       btn.onclick = () => {
+        vocabInStudy = true;
         currentVocabLevel = i;
         roleplayIndex = 0;
         renderVocabSubBar();
@@ -510,6 +568,7 @@ function renderVocabSubBar(skipRender = false) {
   }
   if (!skipRender) {
     if (currentVocabLevel === 5) renderRoleplay();
+    else if (vocabInStudy) renderVocabStudy();
     else renderVocabQuiz();
   }
 }
@@ -602,6 +661,32 @@ function renderRoleplay() {
 function nextScenario() { if (roleplayIndex < state.levels['5'].cards.length - 1) { roleplayIndex++; renderRoleplay(); } }
 function prevScenario() { if (roleplayIndex > 0) { roleplayIndex--; renderRoleplay(); } }
 
+function renderVocabStudy() {
+  const level = state.levels[currentVocabLevel];
+  document.getElementById('mainContent').innerHTML = `
+    <div class="card">
+      <div class="card-label">Level ${currentVocabLevel} · Study</div>
+      <div class="study-title">${level.name}</div>
+      <div class="study-desc">${level.description}</div>
+      <div class="study-list">
+        ${level.cards.map(c => `
+          <div class="study-item">
+            <div class="study-es">${speakBtn(c.es)} ${c.es}</div>
+            <div class="study-en">${c.en}</div>
+            ${c.note ? `<div class="study-note-text">${c.note}</div>` : ''}
+          </div>
+        `).join('')}
+      </div>
+      <button class="start-quiz-btn" onclick="startVocabQuiz()">I'm Ready — Start Quiz →</button>
+    </div>
+  `;
+}
+
+function startVocabQuiz() {
+  vocabInStudy = false;
+  renderVocabQuiz();
+}
+
 // ─── CONJUGATION MODULE ──────────────────────────────────────────────────────
 
 function renderConjSubBar(skipRender = false) {
@@ -615,13 +700,36 @@ function renderConjSubBar(skipRender = false) {
     btn.textContent = `${unlocked ? '' : '🔒 '}S${i}: ${stages[i].name}`;
     if (unlocked) {
       btn.onclick = () => {
+        conjInStudy = true;
         currentConjStage = i;
         renderConjSubBar();
       };
     }
     sub.appendChild(btn);
   }
-  if (!skipRender) renderConjQuestion();
+  if (!skipRender) {
+    if (conjInStudy) renderConjStudy();
+    else renderConjQuestion();
+  }
+}
+
+function renderConjStudy() {
+  const stage = state.conjugations.stages[currentConjStage];
+  const cheatTable = buildCheatSheet(stage, { infinitive: null });
+  document.getElementById('mainContent').innerHTML = `
+    <div class="card">
+      <div class="card-label">Stage ${currentConjStage} · Study</div>
+      <div class="study-title">${stage.name}</div>
+      <div class="rule-box">${stage.rule}</div>
+      <div class="cheat-sheet open" style="margin-bottom:20px">${cheatTable}</div>
+      <button class="start-quiz-btn" onclick="startConjDrill()">I'm Ready — Start Drilling →</button>
+    </div>
+  `;
+}
+
+function startConjDrill() {
+  conjInStudy = false;
+  renderConjQuestion();
 }
 
 function renderConjQuestion() {
@@ -795,13 +903,47 @@ function renderGrammarSubBar(skipRender = false) {
     btn.textContent = `${unlocked ? '' : '🔒 '}${topics[i].name}`;
     if (unlocked) {
       btn.onclick = () => {
+        grammarInStudy = true;
         currentGrammarTopic = i;
         renderGrammarSubBar();
       };
     }
     sub.appendChild(btn);
   }
-  if (!skipRender) renderGrammarQuestion();
+  if (!skipRender) {
+    if (grammarInStudy) renderGrammarStudy();
+    else renderGrammarQuestion();
+  }
+}
+
+function renderGrammarStudy() {
+  const topic = state.grammar.topics[currentGrammarTopic];
+  document.getElementById('mainContent').innerHTML = `
+    <div class="card">
+      <div class="card-label">Topic ${currentGrammarTopic} · Study</div>
+      <div class="study-title">${topic.name}</div>
+      <div class="rule-box">${topic.rule}</div>
+      <div style="margin-top:16px; margin-bottom:20px">
+        ${topic.sentences.map(s => {
+          const filled = s.sentence.replace('___', `<strong style="color:#2e7d32">${s.answer}</strong>`);
+          const spoken = s.sentence.replace('___', s.answer);
+          return `
+            <div class="study-sentence-item">
+              <div class="study-sentence">${filled}</div>
+              <div class="study-answer-line">${s.en} ${speakBtn(spoken)}</div>
+              ${s.note ? `<div class="study-note-text">${s.note}</div>` : ''}
+            </div>
+          `;
+        }).join('')}
+      </div>
+      <button class="start-quiz-btn" onclick="startGrammarQuiz()">I'm Ready — Start Quiz →</button>
+    </div>
+  `;
+}
+
+function startGrammarQuiz() {
+  grammarInStudy = false;
+  renderGrammarQuestion();
 }
 
 function renderGrammarQuestion() {

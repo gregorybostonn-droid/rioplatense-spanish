@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rioplatense Spanish</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #f5f5f0;
+      color: #1a1a1a;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a1a2e;
+      color: white;
+      padding: 16px 20px 0;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    header h1 { font-size: 1.15rem; font-weight: 600; letter-spacing: 0.02em; }
+
+    .session-score { font-size: 0.85rem; color: #a8b0c0; }
+
+    .tab-bar {
+      display: flex;
+      gap: 2px;
+    }
+
+    .tab-btn {
+      padding: 10px 18px;
+      background: transparent;
+      color: #a8b0c0;
+      border: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.15s;
+    }
+
+    .tab-btn:hover { color: #e0e0e0; }
+
+    .tab-btn.active {
+      color: white;
+      border-bottom-color: #5865f2;
+    }
+
+    .sub-bar {
+      background: #16162a;
+      padding: 10px 20px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      min-height: 48px;
+      align-items: center;
+    }
+
+    .sub-btn {
+      padding: 5px 13px;
+      border-radius: 20px;
+      border: 2px solid transparent;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      background: #2a2a4a;
+      color: #a8b0c0;
+    }
+
+    .sub-btn.unlocked { color: #e0e0e0; border-color: #4a4a7a; }
+    .sub-btn.active { background: #5865f2; color: white; border-color: #5865f2; }
+    .sub-btn.locked { opacity: 0.45; cursor: default; }
+
+    main {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 24px 16px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 26px 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      margin-bottom: 20px;
+    }
+
+    .card-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .card-question {
+      font-size: 1.45rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card-note {
+      font-size: 0.82rem;
+      color: #888;
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    .rule-box {
+      background: #f0f4ff;
+      border-left: 4px solid #5865f2;
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.84rem;
+      color: #333;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .speak-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      padding: 2px 4px;
+      border-radius: 6px;
+      transition: background 0.1s;
+      flex-shrink: 0;
+    }
+
+    .speak-btn:hover { background: #f0f0f0; }
+
+    .answer-area { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; }
+
+    .answer-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    .answer-input:focus { border-color: #5865f2; }
+
+    .submit-btn {
+      padding: 12px 24px;
+      background: #5865f2;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .submit-btn:hover { background: #4752c4; }
+    .submit-btn:disabled { background: #ccc; cursor: default; }
+
+    .feedback {
+      padding: 13px 16px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .feedback.correct { background: #e8f5e9; color: #2e7d32; display: block; }
+    .feedback.wrong { background: #fce4ec; color: #c62828; display: block; }
+    .feedback strong { display: block; margin-bottom: 4px; }
+
+    .next-btn {
+      width: 100%;
+      padding: 12px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      margin-top: 4px;
+      transition: background 0.15s;
+    }
+
+    .next-btn:hover { background: #e0e0e0; }
+
+    .progress-section {
+      background: white;
+      border-radius: 16px;
+      padding: 18px 22px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      margin-bottom: 20px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .progress-bar-bg {
+      background: #f0f0f0;
+      border-radius: 8px;
+      height: 9px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: #5865f2;
+      border-radius: 8px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-bar-fill.complete { background: #43a047; }
+
+    .unlock-msg {
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #e8f5e9;
+      border-radius: 8px;
+      color: #2e7d32;
+      font-weight: 600;
+      font-size: 0.88rem;
+      display: none;
+    }
+
+    /* Roleplay */
+    .scenario-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 14px; }
+
+    .phrase-list { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+
+    .phrase-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: #f8f8f8;
+      border-radius: 10px;
+      font-size: 0.97rem;
+    }
+
+    .roleplay-note { font-size: 0.82rem; color: #888; font-style: italic; margin-bottom: 14px; }
+
+    .roleplay-nav { display: flex; gap: 10px; }
+
+    .roleplay-nav button {
+      flex: 1;
+      padding: 10px;
+      border: 2px solid #e0e0e0;
+      background: white;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .roleplay-nav button:hover { border-color: #5865f2; color: #5865f2; }
+
+    /* Conjugation cheat sheet */
+    .cheat-toggle {
+      padding: 7px 14px;
+      background: #f0f0f0;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 14px;
+      transition: background 0.15s;
+    }
+
+    .cheat-toggle:hover { background: #e0e0e0; }
+
+    .cheat-sheet {
+      display: none;
+      background: #fafafa;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .cheat-sheet.open { display: block; }
+
+    .cheat-sheet table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .cheat-sheet th {
+      background: #f0f0f0;
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+      color: #555;
+    }
+
+    .cheat-sheet td {
+      padding: 7px 12px;
+      border-top: 1px solid #eee;
+    }
+
+    .cheat-sheet tr:hover td { background: #f5f5ff; }
+
+    .conj-prompt-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #5865f2;
+      margin-bottom: 4px;
+    }
+
+    .conj-verb-display {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .conj-pronoun-display {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 2px;
+    }
+
+    .conj-en {
+      font-size: 0.85rem;
+      color: #999;
+      margin-bottom: 16px;
+    }
+
+    /* Fill-in blank styling */
+    .blank-sentence {
+      font-size: 1.3rem;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+
+    .blank {
+      display: inline-block;
+      min-width: 60px;
+      border-bottom: 2px solid #5865f2;
+      color: #5865f2;
+    }
+
+    @media (max-width: 480px) {
+      .card-question { font-size: 1.15rem; }
+      header h1 { font-size: 1rem; }
+      .tab-btn { padding: 10px 12px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <h1>Rioplatense Spanish</h1>
+    <span class="session-score" id="sessionScore">0 / 0</span>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('vocab')">Vocabulary</button>
+    <button class="tab-btn" onclick="switchTab('conjugations')">Conjugations</button>
+    <button class="tab-btn" onclick="switchTab('grammar')">Grammar</button>
+  </div>
+</header>
+
+<div class="sub-bar" id="subBar"></div>
+
+<main id="mainContent"></main>
+
+<script>
+let state = null;
+let activeTab = 'vocab';
+
+// Vocab state
+let currentVocabLevel = 1;
+let currentVocabCard = null;
+let quizDirection = 'es';
+let roleplayIndex = 0;
+
+// Conjugation state
+let currentConjStage = 1;
+let currentConjVerb = null;
+let currentConjPronoun = null;
+let currentConjType = null; // for stage 4: 'formal' or 'ir_a'
+let currentConjTrigger = null; // for stage 5
+
+// Grammar state
+let currentGrammarTopic = 1;
+let currentGrammarSentence = null;
+
+// Session
+let sessionCorrect = 0;
+let sessionTotal = 0;
+
+async function loadState() {
+  const res = await fetch('/api/state');
+  state = await res.json();
+  currentVocabLevel = state.progress.currentLevel;
+  currentConjStage = state.conjugationProgress.currentStage;
+  currentGrammarTopic = state.grammarProgress.currentTopic;
+  switchTab('vocab');
+}
+
+async function saveProgress() {
+  await fetch('/api/progress', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      progress: state.progress,
+      conjugationProgress: state.conjugationProgress,
+      grammarProgress: state.grammarProgress,
+      levels: state.levels
+    })
+  });
+}
+
+function speak(text) {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance(text);
+  utt.lang = 'es-AR';
+  utt.rate = 0.85;
+  window.speechSynthesis.speak(utt);
+}
+
+function speakBtn(text) {
+  return `<button class="speak-btn" onclick="speak(${JSON.stringify(text)})" title="Listen">🔊</button>`;
+}
+
+function normalize(str) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[¿¡?!.,]/g, '')
+    .trim();
+}
+
+function weightedRandom(cards) {
+  const weights = cards.map(c => 1 + (c.timesWrong || 0) * 2 + (c.priority || 1));
+  const total = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * total;
+  for (let i = 0; i < cards.length; i++) {
+    r -= weights[i];
+    if (r <= 0) return cards[i];
+  }
+  return cards[cards.length - 1];
+}
+
+function randomFrom(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function updateSessionScore() {
+  document.getElementById('sessionScore').textContent = `${sessionCorrect} / ${sessionTotal}`;
+}
+
+// ─── TAB SWITCHING ──────────────────────────────────────────────────────────
+
+function switchTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', ['vocab','conjugations','grammar'][i] === tab);
+  });
+  if (tab === 'vocab') renderVocabSubBar();
+  else if (tab === 'conjugations') renderConjSubBar();
+  else if (tab === 'grammar') renderGrammarSubBar();
+}
+
+// ─── VOCAB MODULE ────────────────────────────────────────────────────────────
+
+function renderVocabSubBar(skipRender = false) {
+  const sub = document.getElementById('subBar');
+  sub.innerHTML = '';
+  for (let i = 1; i <= 5; i++) {
+    const unlocked = state.progress.unlockedLevels.includes(i);
+    const btn = document.createElement('button');
+    btn.className = `sub-btn ${unlocked ? 'unlocked' : 'locked'} ${i === currentVocabLevel ? 'active' : ''}`;
+    btn.textContent = `${unlocked ? '' : '🔒 '}L${i}: ${state.levels[i].name}`;
+    if (unlocked) {
+      btn.onclick = () => {
+        currentVocabLevel = i;
+        roleplayIndex = 0;
+        renderVocabSubBar();
+      };
+    }
+    sub.appendChild(btn);
+  }
+  if (!skipRender) {
+    if (currentVocabLevel === 5) renderRoleplay();
+    else renderVocabQuiz();
+  }
+}
+
+function renderVocabQuiz() {
+  const cards = state.levels[currentVocabLevel].cards;
+  currentVocabCard = weightedRandom(cards);
+  quizDirection = Math.random() > 0.5 ? 'es' : 'en';
+
+  const score = state.progress.levelScores[currentVocabLevel];
+  const accuracy = score.attempts > 0 ? score.correct / score.attempts : 0;
+  const pct = Math.min(100, Math.round(accuracy * 100));
+  const threshold = state.progress.unlockThreshold * 100;
+
+  document.getElementById('mainContent').innerHTML = `
+    ${progressSection('Level ' + currentVocabLevel + ' accuracy', pct, threshold, 'vocabUnlockMsg')}
+    <div class="card">
+      <div class="card-label">${quizDirection === 'es' ? 'Translate to English' : 'Translate to Rioplatense'}</div>
+      <div class="card-question">
+        ${quizDirection === 'es'
+          ? `${speakBtn(currentVocabCard.es)} ${currentVocabCard.es}`
+          : currentVocabCard.en}
+      </div>
+      ${currentVocabCard.note ? `<div class="card-note">${currentVocabCard.note}</div>` : ''}
+      <div class="answer-area">
+        <input class="answer-input" id="answerInput" type="text" placeholder="Your answer..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+        <button class="submit-btn" id="submitBtn" onclick="checkVocabAnswer()">Submit</button>
+        <div class="feedback" id="feedback"></div>
+        <button class="next-btn" id="nextBtn" onclick="renderVocabQuiz()">Next card →</button>
+      </div>
+    </div>
+  `;
+  setupInputEnter('answerInput', 'submitBtn', 'nextBtn', checkVocabAnswer, renderVocabQuiz);
+}
+
+function checkVocabAnswer() {
+  const input = document.getElementById('answerInput');
+  if (!input.value.trim()) return;
+  const correct = quizDirection === 'es' ? currentVocabCard.en : currentVocabCard.es;
+  const isCorrect = normalize(input.value) === normalize(correct);
+  const score = state.progress.levelScores[currentVocabLevel];
+  score.attempts++;
+  if (isCorrect) {
+    score.correct++;
+    sessionCorrect++;
+    showFeedback(true, correct, quizDirection === 'en' ? currentVocabCard.es : null);
+  } else {
+    currentVocabCard.timesWrong = (currentVocabCard.timesWrong || 0) + 1;
+    showFeedback(false, correct, quizDirection === 'en' ? currentVocabCard.es : null);
+  }
+  score.accuracy = score.attempts > 0 ? score.correct / score.attempts : 0;
+  sessionTotal++;
+  updateSessionScore();
+  checkVocabUnlock();
+  saveProgress();
+}
+
+function checkVocabUnlock() {
+  const score = state.progress.levelScores[currentVocabLevel];
+  if (score.attempts >= 5 && score.accuracy >= state.progress.unlockThreshold && currentVocabLevel < 5) {
+    const next = currentVocabLevel + 1;
+    if (!state.progress.unlockedLevels.includes(next)) {
+      state.progress.unlockedLevels.push(next);
+      const msg = document.getElementById('vocabUnlockMsg');
+      if (msg) { msg.textContent = `🎉 Level ${next} unlocked! ¡Qué copado!`; msg.style.display = 'block'; }
+      renderVocabSubBar(true);
+    }
+  }
+}
+
+function renderRoleplay() {
+  const scenarios = state.levels['5'].cards;
+  const s = scenarios[roleplayIndex];
+  document.getElementById('mainContent').innerHTML = `
+    <div class="card">
+      <div class="card-label">Roleplay Scenario ${roleplayIndex + 1} of ${scenarios.length}</div>
+      <div class="scenario-title">${s.scenario}</div>
+      <ul class="phrase-list">
+        ${s.keyPhrases.map(p => `<li class="phrase-item">${speakBtn(p)}<span>${p}</span></li>`).join('')}
+      </ul>
+      ${s.note ? `<div class="roleplay-note">💡 ${s.note}</div>` : ''}
+      <div class="roleplay-nav">
+        <button onclick="prevScenario()" ${roleplayIndex === 0 ? 'disabled style="opacity:0.4"' : ''}>← Previous</button>
+        <button onclick="nextScenario()" ${roleplayIndex === scenarios.length - 1 ? 'disabled style="opacity:0.4"' : ''}>Next →</button>
+      </div>
+    </div>
+  `;
+}
+
+function nextScenario() { if (roleplayIndex < state.levels['5'].cards.length - 1) { roleplayIndex++; renderRoleplay(); } }
+function prevScenario() { if (roleplayIndex > 0) { roleplayIndex--; renderRoleplay(); } }
+
+// ─── CONJUGATION MODULE ──────────────────────────────────────────────────────
+
+function renderConjSubBar(skipRender = false) {
+  const sub = document.getElementById('subBar');
+  sub.innerHTML = '';
+  const stages = state.conjugations.stages;
+  for (let i = 1; i <= 5; i++) {
+    const unlocked = state.conjugationProgress.unlockedStages.includes(i);
+    const btn = document.createElement('button');
+    btn.className = `sub-btn ${unlocked ? 'unlocked' : 'locked'} ${i === currentConjStage ? 'active' : ''}`;
+    btn.textContent = `${unlocked ? '' : '🔒 '}S${i}: ${stages[i].name}`;
+    if (unlocked) {
+      btn.onclick = () => {
+        currentConjStage = i;
+        renderConjSubBar();
+      };
+    }
+    sub.appendChild(btn);
+  }
+  if (!skipRender) renderConjQuestion();
+}
+
+function renderConjQuestion() {
+  const stage = state.conjugations.stages[currentConjStage];
+  const score = state.conjugationProgress.stageScores[currentConjStage];
+  const pct = score.attempts > 0 ? Math.min(100, Math.round(score.accuracy * 100)) : 0;
+  const threshold = 80;
+
+  const verb = randomFrom(stage.verbs);
+  currentConjVerb = verb;
+
+  let questionHTML = '';
+  let answerKey = '';
+  let speakText = '';
+
+  if (currentConjStage === 1) {
+    currentConjPronoun = 'vos';
+    answerKey = verb.vos;
+    speakText = `vos ${verb.vos}`;
+    questionHTML = `
+      <div class="conj-prompt-label">Conjugate with vos</div>
+      <div class="conj-verb-display">${verb.infinitive}</div>
+      <div class="conj-en">${verb.en} · type: ${verb.type}</div>
+    `;
+  } else if (currentConjStage === 4) {
+    currentConjType = Math.random() > 0.5 ? 'formal' : 'ir_a';
+    if (currentConjType === 'formal') {
+      answerKey = verb.formal_yo;
+      speakText = verb.formal_yo;
+      questionHTML = `
+        <div class="conj-prompt-label">Formal future · yo</div>
+        <div class="conj-verb-display">${verb.infinitive}</div>
+        <div class="conj-en">${verb.en}${verb.note ? ' · ' + verb.note : ''}</div>
+      `;
+    } else {
+      answerKey = verb.ir_a_vos;
+      speakText = verb.ir_a_vos;
+      questionHTML = `
+        <div class="conj-prompt-label">Informal future (ir + a) · vos</div>
+        <div class="conj-verb-display">${verb.infinitive}</div>
+        <div class="conj-en">${verb.en}${verb.note ? ' · ' + verb.note : ''}</div>
+      `;
+    }
+  } else if (currentConjStage === 5) {
+    const pronouns = ['yo', 'vos', 'el', 'nosotros', 'ellos'];
+    const pronounLabels = { yo: 'yo', vos: 'vos', el: 'él/ella', nosotros: 'nosotros', ellos: 'ellos' };
+    currentConjPronoun = randomFrom(pronouns);
+    currentConjTrigger = randomFrom(stage.triggers);
+    answerKey = verb[currentConjPronoun];
+    speakText = `${currentConjTrigger} ${pronounLabels[currentConjPronoun]} ${answerKey}`;
+    questionHTML = `
+      <div class="conj-prompt-label">Present subjunctive</div>
+      <div class="conj-pronoun-display">${currentConjTrigger} <strong>${pronounLabels[currentConjPronoun]}</strong> + …</div>
+      <div class="conj-verb-display">${verb.infinitive}</div>
+      <div class="conj-en">${verb.en}</div>
+    `;
+  } else {
+    const pronouns = ['yo', 'vos', 'el', 'nosotros', 'ellos'];
+    const pronounLabels = { yo: 'yo', vos: 'vos', el: 'él/ella', nosotros: 'nosotros', ellos: 'ellos' };
+    currentConjPronoun = randomFrom(pronouns);
+    answerKey = verb[currentConjPronoun];
+    speakText = `${pronounLabels[currentConjPronoun]} ${answerKey}`;
+    questionHTML = `
+      <div class="conj-prompt-label">Conjugate · ${stage.name}</div>
+      <div class="conj-pronoun-display"><strong>${pronounLabels[currentConjPronoun]}</strong></div>
+      <div class="conj-verb-display">${verb.infinitive}</div>
+      <div class="conj-en">${verb.en}</div>
+    `;
+  }
+
+  const cheatTableHTML = buildCheatSheet(stage, verb);
+
+  document.getElementById('mainContent').innerHTML = `
+    ${progressSection('Stage ' + currentConjStage + ' accuracy', pct, threshold, 'conjUnlockMsg')}
+    <div class="card">
+      <div class="rule-box">${stage.rule}</div>
+      <button class="cheat-toggle" onclick="toggleCheatSheet()">📋 Cheat sheet</button>
+      <div class="cheat-sheet" id="cheatSheet">${cheatTableHTML}</div>
+      ${questionHTML}
+      <div class="answer-area">
+        <input class="answer-input" id="answerInput" type="text" placeholder="Your answer..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+        <button class="submit-btn" id="submitBtn" onclick="checkConjAnswer(${JSON.stringify(answerKey)}, ${JSON.stringify(speakText)})">Submit</button>
+        <div class="feedback" id="feedback"></div>
+        <button class="next-btn" id="nextBtn" onclick="renderConjQuestion()">Next →</button>
+      </div>
+    </div>
+  `;
+  setupInputEnter('answerInput', 'submitBtn', 'nextBtn',
+    () => checkConjAnswer(answerKey, speakText),
+    renderConjQuestion
+  );
+}
+
+function buildCheatSheet(stage, focusVerb) {
+  if (currentConjStage === 1) {
+    const rows = stage.verbs.map(v =>
+      `<tr${v.infinitive === focusVerb.infinitive ? ' style="background:#f0f4ff"' : ''}>
+        <td>${v.infinitive}</td><td>${v.en}</td><td><strong>${v.vos}</strong></td><td style="color:#888;font-size:0.8em">${v.type}</td>
+      </tr>`
+    ).join('');
+    return `<table><thead><tr><th>Infinitive</th><th>English</th><th>vos</th><th>Type</th></tr></thead><tbody>${rows}</tbody></table>`;
+  } else if (currentConjStage === 4) {
+    const rows = stage.verbs.map(v =>
+      `<tr${v.infinitive === focusVerb.infinitive ? ' style="background:#f0f4ff"' : ''}>
+        <td>${v.infinitive}</td><td>${v.formal_yo}</td><td>${v.ir_a_vos}</td><td style="color:#888;font-size:0.8em">${v.note || ''}</td>
+      </tr>`
+    ).join('');
+    return `<table><thead><tr><th>Infinitive</th><th>Formal (yo)</th><th>ir + a (vos)</th><th>Note</th></tr></thead><tbody>${rows}</tbody></table>`;
+  } else {
+    const pronounCols = currentConjStage === 5
+      ? ['yo','vos','el','nosotros','ellos']
+      : ['yo','vos','el','nosotros','ellos'];
+    const labels = { yo:'yo', vos:'vos', el:'él/ella', nosotros:'nosotros', ellos:'ellos' };
+    const headerCells = ['<th>Verb</th>', ...pronounCols.map(p => `<th>${labels[p]}</th>`)].join('');
+    const rows = stage.verbs.map(v => {
+      const cells = pronounCols.map(p => `<td>${v[p] || '—'}</td>`).join('');
+      const hl = v.infinitive === focusVerb.infinitive ? ' style="background:#f0f4ff"' : '';
+      return `<tr${hl}><td><strong>${v.infinitive}</strong></td>${cells}</tr>`;
+    }).join('');
+    return `<table><thead><tr>${headerCells}</tr></thead><tbody>${rows}</tbody></table>`;
+  }
+}
+
+function toggleCheatSheet() {
+  document.getElementById('cheatSheet').classList.toggle('open');
+}
+
+function checkConjAnswer(answerKey, speakText) {
+  const input = document.getElementById('answerInput');
+  if (!input.value.trim()) return;
+  const isCorrect = normalize(input.value) === normalize(answerKey);
+  const score = state.conjugationProgress.stageScores[currentConjStage];
+  score.attempts++;
+  if (isCorrect) {
+    score.correct++;
+    sessionCorrect++;
+    showFeedback(true, answerKey, speakText);
+  } else {
+    showFeedback(false, answerKey, speakText);
+  }
+  score.accuracy = score.attempts > 0 ? score.correct / score.attempts : 0;
+  sessionTotal++;
+  updateSessionScore();
+  checkConjUnlock();
+  saveProgress();
+}
+
+function checkConjUnlock() {
+  const score = state.conjugationProgress.stageScores[currentConjStage];
+  if (score.attempts >= 5 && score.accuracy >= 0.8 && currentConjStage < 5) {
+    const next = currentConjStage + 1;
+    if (!state.conjugationProgress.unlockedStages.includes(next)) {
+      state.conjugationProgress.unlockedStages.push(next);
+      const msg = document.getElementById('conjUnlockMsg');
+      if (msg) { msg.textContent = `🎉 Stage ${next} unlocked! ¡Muy bien!`; msg.style.display = 'block'; }
+      renderConjSubBar(true);
+    }
+  }
+}
+
+// ─── GRAMMAR MODULE ──────────────────────────────────────────────────────────
+
+function renderGrammarSubBar(skipRender = false) {
+  const sub = document.getElementById('subBar');
+  sub.innerHTML = '';
+  const topics = state.grammar.topics;
+  for (let i = 1; i <= 6; i++) {
+    const unlocked = state.grammarProgress.unlockedTopics.includes(i);
+    const btn = document.createElement('button');
+    btn.className = `sub-btn ${unlocked ? 'unlocked' : 'locked'} ${i === currentGrammarTopic ? 'active' : ''}`;
+    btn.textContent = `${unlocked ? '' : '🔒 '}${topics[i].name}`;
+    if (unlocked) {
+      btn.onclick = () => {
+        currentGrammarTopic = i;
+        renderGrammarSubBar();
+      };
+    }
+    sub.appendChild(btn);
+  }
+  if (!skipRender) renderGrammarQuestion();
+}
+
+function renderGrammarQuestion() {
+  const topic = state.grammar.topics[currentGrammarTopic];
+  const score = state.grammarProgress.topicScores[currentGrammarTopic];
+  const pct = score.attempts > 0 ? Math.min(100, Math.round(score.accuracy * 100)) : 0;
+
+  currentGrammarSentence = randomFrom(topic.sentences);
+  const s = currentGrammarSentence;
+
+  const displaySentence = s.sentence.replace('___', '<span class="blank">___</span>');
+  const fullSentence = s.sentence.replace('___', s.answer);
+
+  document.getElementById('mainContent').innerHTML = `
+    ${progressSection('Topic ' + currentGrammarTopic + ' accuracy', pct, 80, 'grammarUnlockMsg')}
+    <div class="card">
+      <div class="rule-box">${topic.rule}</div>
+      <div class="card-label">${topic.name} — fill in the blank</div>
+      <div class="blank-sentence">${displaySentence}</div>
+      <div class="card-note">${s.en}</div>
+      <div class="answer-area">
+        <input class="answer-input" id="answerInput" type="text" placeholder="Fill in the blank..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />
+        <button class="submit-btn" id="submitBtn" onclick="checkGrammarAnswer(${JSON.stringify(s.answer)}, ${JSON.stringify(fullSentence)}, ${JSON.stringify(s.note)})">Submit</button>
+        <div class="feedback" id="feedback"></div>
+        <button class="next-btn" id="nextBtn" onclick="renderGrammarQuestion()">Next →</button>
+      </div>
+    </div>
+  `;
+  setupInputEnter('answerInput', 'submitBtn', 'nextBtn',
+    () => checkGrammarAnswer(s.answer, fullSentence, s.note),
+    renderGrammarQuestion
+  );
+}
+
+function checkGrammarAnswer(answerKey, fullSentence, note) {
+  const input = document.getElementById('answerInput');
+  if (!input.value.trim()) return;
+  const isCorrect = normalize(input.value) === normalize(answerKey);
+  const score = state.grammarProgress.topicScores[currentGrammarTopic];
+  score.attempts++;
+  if (isCorrect) {
+    score.correct++;
+    sessionCorrect++;
+  }
+  score.accuracy = score.attempts > 0 ? score.correct / score.attempts : 0;
+  sessionTotal++;
+  updateSessionScore();
+
+  const feedback = document.getElementById('feedback');
+  const submitBtn = document.getElementById('submitBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  if (isCorrect) {
+    feedback.className = 'feedback correct';
+    feedback.innerHTML = `<strong>✅ Correct!</strong>${speakBtn(fullSentence)} ${fullSentence}<div style="margin-top:6px;font-size:0.82rem;color:#555">${note}</div>`;
+  } else {
+    feedback.className = 'feedback wrong';
+    feedback.innerHTML = `<strong>❌ Not quite.</strong> Answer: <em>${answerKey}</em><br>${speakBtn(fullSentence)} ${fullSentence}<div style="margin-top:6px;font-size:0.82rem;color:#a00">${note}</div>`;
+  }
+  submitBtn.disabled = true;
+  nextBtn.style.display = 'block';
+
+  checkGrammarUnlock();
+  saveProgress();
+}
+
+function checkGrammarUnlock() {
+  const score = state.grammarProgress.topicScores[currentGrammarTopic];
+  if (score.attempts >= 5 && score.accuracy >= 0.8 && currentGrammarTopic < 6) {
+    const next = currentGrammarTopic + 1;
+    if (!state.grammarProgress.unlockedTopics.includes(next)) {
+      state.grammarProgress.unlockedTopics.push(next);
+      const msg = document.getElementById('grammarUnlockMsg');
+      if (msg) { msg.textContent = `🎉 Topic ${next} unlocked! ¡Dale!`; msg.style.display = 'block'; }
+      renderGrammarSubBar(true);
+    }
+  }
+}
+
+// ─── SHARED HELPERS ──────────────────────────────────────────────────────────
+
+function progressSection(label, pct, threshold, unlockMsgId) {
+  return `
+    <div class="progress-section">
+      <div class="progress-label"><span>${label}</span><span>${pct}% / ${threshold}% to unlock next</span></div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill ${pct >= threshold ? 'complete' : ''}" style="width:${pct}%"></div>
+      </div>
+      <div class="unlock-msg" id="${unlockMsgId}"></div>
+    </div>
+  `;
+}
+
+function showFeedback(isCorrect, correctAnswer, speakText) {
+  const feedback = document.getElementById('feedback');
+  const submitBtn = document.getElementById('submitBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  if (isCorrect) {
+    feedback.className = 'feedback correct';
+    feedback.innerHTML = `<strong>✅ Correct!</strong>${speakText ? ` ${speakBtn(speakText)} ${correctAnswer}` : ''}`;
+  } else {
+    feedback.className = 'feedback wrong';
+    feedback.innerHTML = `<strong>❌ Not quite.</strong> Answer: <em>${correctAnswer}</em>${speakText ? ` ${speakBtn(speakText)}` : ''}`;
+  }
+  submitBtn.disabled = true;
+  nextBtn.style.display = 'block';
+}
+
+function setupInputEnter(inputId, submitId, nextId, submitFn, nextFn) {
+  const input = document.getElementById(inputId);
+  if (!input) return;
+  input.focus();
+  input.addEventListener('keydown', e => {
+    if (e.key !== 'Enter') return;
+    const nextBtn = document.getElementById(nextId);
+    if (nextBtn && nextBtn.style.display === 'block') nextFn();
+    else submitFn();
+  });
+}
+
+loadState();
+</script>
+</body>
+</html>

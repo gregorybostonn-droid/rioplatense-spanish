@@ -1,0 +1,355 @@
+{
+  "meta": {
+    "dialect": "Rioplatense",
+    "regions": ["Argentina", "Uruguay"],
+    "version": "1.1"
+  },
+  "progress": {
+    "currentLevel": 1,
+    "unlockedLevels": [1],
+    "levelScores": {
+      "1": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "2": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "3": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "4": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "5": { "attempts": 0, "correct": 0, "accuracy": 0 }
+    },
+    "unlockThreshold": 0.8
+  },
+  "conjugationProgress": {
+    "currentStage": 1,
+    "unlockedStages": [1],
+    "stageScores": {
+      "1": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "2": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "3": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "4": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "5": { "attempts": 0, "correct": 0, "accuracy": 0 }
+    }
+  },
+  "grammarProgress": {
+    "currentTopic": 1,
+    "unlockedTopics": [1],
+    "topicScores": {
+      "1": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "2": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "3": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "4": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "5": { "attempts": 0, "correct": 0, "accuracy": 0 },
+      "6": { "attempts": 0, "correct": 0, "accuracy": 0 }
+    }
+  },
+  "levels": {
+    "1": {
+      "name": "Greetings & Voseo Basics",
+      "description": "Core greetings and the vos pronoun system",
+      "cards": [
+        { "id": "1-01", "es": "¿Cómo andás?", "en": "How are you?", "note": "Voseo version of ¿Cómo estás?", "priority": 1, "timesWrong": 0 },
+        { "id": "1-02", "es": "Bien, ¿y vos?", "en": "Good, and you?", "note": "Vos replaces tú", "priority": 1, "timesWrong": 0 },
+        { "id": "1-03", "es": "¿Qué hacés?", "en": "What are you doing?", "note": "Hacés = voseo for hacer", "priority": 1, "timesWrong": 0 },
+        { "id": "1-04", "es": "Hasta luego, che", "en": "See you later, man", "note": "Che is a filler word unique to Rioplatense", "priority": 1, "timesWrong": 0 },
+        { "id": "1-05", "es": "Buenas", "en": "Hey / Hi (casual)", "note": "Short for buenos días/tardes/noches", "priority": 1, "timesWrong": 0 },
+        { "id": "1-06", "es": "Dale", "en": "OK / Sure / Go ahead", "note": "One of the most common words you'll hear", "priority": 1, "timesWrong": 0 },
+        { "id": "1-07", "es": "¿Querés?", "en": "Do you want?", "note": "Voseo for querer", "priority": 1, "timesWrong": 0 },
+        { "id": "1-08", "es": "Sabés", "en": "You know", "note": "Voseo for saber", "priority": 1, "timesWrong": 0 },
+        { "id": "1-09", "es": "Tenés razón", "en": "You're right", "note": "Voseo for tener", "priority": 1, "timesWrong": 0 },
+        { "id": "1-10", "es": "Chau", "en": "Bye", "note": "From Italian ciao — very common", "priority": 1, "timesWrong": 0 }
+      ]
+    },
+    "2": {
+      "name": "Core Lunfardo",
+      "description": "Essential Buenos Aires street slang",
+      "cards": [
+        { "id": "2-01", "es": "Laburo", "en": "Work / job", "note": "From Italian lavoro", "priority": 1, "timesWrong": 0 },
+        { "id": "2-02", "es": "Mina", "en": "Woman / girl", "note": "Casual, not offensive in context", "priority": 1, "timesWrong": 0 },
+        { "id": "2-03", "es": "Pibe / Piba", "en": "Guy / girl (young)", "note": "Very common, friendly term", "priority": 1, "timesWrong": 0 },
+        { "id": "2-04", "es": "Quilombo", "en": "Mess / chaos / problem", "note": "One of the most useful words", "priority": 1, "timesWrong": 0 },
+        { "id": "2-05", "es": "Guita", "en": "Money", "note": "Lunfardo for plata/dinero", "priority": 1, "timesWrong": 0 },
+        { "id": "2-06", "es": "Morfar", "en": "To eat", "note": "From Italian morfare", "priority": 1, "timesWrong": 0 },
+        { "id": "2-07", "es": "Fiaca", "en": "Laziness / can't be bothered", "note": "Tengo fiaca = I can't be bothered", "priority": 1, "timesWrong": 0 },
+        { "id": "2-08", "es": "Copado/a", "en": "Cool / awesome", "note": "Qué copado = how cool", "priority": 1, "timesWrong": 0 },
+        { "id": "2-09", "es": "Boludo/a", "en": "Idiot (but affectionate between friends)", "note": "Context is everything with this word", "priority": 1, "timesWrong": 0 },
+        { "id": "2-10", "es": "Re", "en": "Very / really", "note": "Re copado = really cool. Used constantly", "priority": 1, "timesWrong": 0 },
+        { "id": "2-11", "es": "Chabón / Chabona", "en": "Dude / guy / girl", "note": "Similar to pibe but slightly older sounding", "priority": 1, "timesWrong": 0 },
+        { "id": "2-12", "es": "Pinta", "en": "Vibe / look / appearance", "note": "Tiene buena pinta = looks good", "priority": 1, "timesWrong": 0 }
+      ]
+    },
+    "3": {
+      "name": "In Context",
+      "description": "Lunfardo and voseo used in natural sentences",
+      "cards": [
+        { "id": "3-01", "es": "Tengo mucha fiaca hoy", "en": "I really can't be bothered today", "note": "Very common expression", "priority": 1, "timesWrong": 0 },
+        { "id": "3-02", "es": "¿Vamos a morfar algo?", "en": "Shall we go eat something?", "note": "Natural way to suggest food", "priority": 1, "timesWrong": 0 },
+        { "id": "3-03", "es": "Ese pibe es re copado", "en": "That guy is really cool", "note": "Combines pibe + re + copado", "priority": 1, "timesWrong": 0 },
+        { "id": "3-04", "es": "No tengo guita", "en": "I have no money", "note": "Very natural — no one says dinero day-to-day", "priority": 1, "timesWrong": 0 },
+        { "id": "3-05", "es": "¡Qué quilombo!", "en": "What a mess!", "note": "Exclamation of frustration", "priority": 1, "timesWrong": 0 },
+        { "id": "3-06", "es": "Me cayó bien", "en": "I liked them / good vibe", "note": "Caer bien/mal = to make a good/bad impression", "priority": 1, "timesWrong": 0 },
+        { "id": "3-07", "es": "Me cayó mal", "en": "I didn't like them / bad vibe", "note": "", "priority": 1, "timesWrong": 0 },
+        { "id": "3-08", "es": "Estoy harto de laburar", "en": "I'm sick of working", "note": "Harto = fed up, laburar = to work", "priority": 1, "timesWrong": 0 },
+        { "id": "3-09", "es": "Tiene buena onda", "en": "Has good vibes / is a good person", "note": "Onda = vibe/energy, very common", "priority": 1, "timesWrong": 0 },
+        { "id": "3-10", "es": "¿Todo bien, che?", "en": "All good, man?", "note": "Casual check-in", "priority": 1, "timesWrong": 0 }
+      ]
+    },
+    "4": {
+      "name": "Translate to Rioplatense",
+      "description": "Translate English sentences into natural Rioplatense Spanish",
+      "cards": [
+        { "id": "4-01", "en": "Do you want to come?", "es": "¿Querés venir?", "note": "Not quieres — voseo", "priority": 1, "timesWrong": 0 },
+        { "id": "4-02", "en": "What do you think?", "es": "¿Qué te parece?", "note": "More natural than ¿Qué piensas?", "priority": 1, "timesWrong": 0 },
+        { "id": "4-03", "en": "I'm tired of working", "es": "Estoy harto de laburar", "note": "Use laburar not trabajar", "priority": 1, "timesWrong": 0 },
+        { "id": "4-04", "en": "That's not my problem", "es": "No es mi quilombo", "note": "Localised idiom", "priority": 1, "timesWrong": 0 },
+        { "id": "4-05", "en": "Are you serious?", "es": "¿En serio me decís eso?", "note": "Decís = voseo for decir", "priority": 1, "timesWrong": 0 },
+        { "id": "4-06", "en": "I don't have any money on me", "es": "No tengo nada de guita encima", "note": "Encima = on me / on my person", "priority": 1, "timesWrong": 0 },
+        { "id": "4-07", "en": "He's a really cool guy", "es": "Es un pibe re copado", "note": "Natural word order in Rioplatense", "priority": 1, "timesWrong": 0 },
+        { "id": "4-08", "en": "Let's go eat", "es": "Vamos a morfar", "note": "", "priority": 1, "timesWrong": 0 },
+        { "id": "4-09", "en": "I can't be bothered going out tonight", "es": "Tengo fiaca de salir esta noche", "note": "", "priority": 1, "timesWrong": 0 },
+        { "id": "4-10", "en": "Everything is a mess here", "es": "Todo es un quilombo acá", "note": "Acá = aquí in Rioplatense", "priority": 1, "timesWrong": 0 }
+      ]
+    },
+    "5": {
+      "name": "Roleplay Scenarios",
+      "description": "Full conversations in natural Rioplatense Spanish",
+      "cards": [
+        {
+          "id": "5-01",
+          "scenario": "Ordering at a parrilla",
+          "keyPhrases": ["Una porción de asado, por favor", "¿Qué me recomendás?", "¿Cómo está el vacío hoy?", "Bien cocido / jugoso"],
+          "note": "Vacío = flank steak, very popular cut",
+          "priority": 1,
+          "timesWrong": 0
+        },
+        {
+          "id": "5-02",
+          "scenario": "Complaining casually to a friend",
+          "keyPhrases": ["Todo es un quilombo acá, che", "Estoy re cansado", "No doy más", "Me tiene harto"],
+          "note": "No doy más = I'm done / I can't take it anymore",
+          "priority": 1,
+          "timesWrong": 0
+        },
+        {
+          "id": "5-03",
+          "scenario": "Complimenting a friend",
+          "keyPhrases": ["Sos re copado, boludo", "Tenés buena onda", "Me caés muy bien", "Sos lo más"],
+          "note": "Sos lo más = you're the best",
+          "priority": 1,
+          "timesWrong": 0
+        },
+        {
+          "id": "5-04",
+          "scenario": "Asking for directions",
+          "keyPhrases": ["¿Me decís cómo llego a...?", "¿Queda lejos?", "¿Voy derecho?", "¿A cuántas cuadras?"],
+          "note": "Cuadras = blocks. Used instead of metros/minutos walking",
+          "priority": 1,
+          "timesWrong": 0
+        },
+        {
+          "id": "5-05",
+          "scenario": "Talking about work",
+          "keyPhrases": ["Hoy el laburo estuvo pesado", "Estoy hasta acá con el laburo", "Mi jefe es un quilombo", "Necesito las vacaciones ya"],
+          "note": "Hasta acá = up to here (fed up gesture)",
+          "priority": 1,
+          "timesWrong": 0
+        },
+        {
+          "id": "5-06",
+          "scenario": "Making plans",
+          "keyPhrases": ["¿Te copás con salir esta noche?", "Dale, ¿a qué hora?", "Paso a buscarte", "¿Dónde quedamos?"],
+          "note": "¿Te copás? = are you up for it? Quedar = to meet up",
+          "priority": 1,
+          "timesWrong": 0
+        }
+      ]
+    }
+  },
+  "conjugations": {
+    "stages": {
+      "1": {
+        "name": "Voseo Present",
+        "rule": "-AR verbs: drop r, add s with accent → hablár → hablás. -ER verbs: drop r, add s with accent → tenér → tenés. -IR verbs: drop r, add s with accent → viví r → vivís. Vos replaces tú entirely in Argentina & Uruguay.",
+        "pronouns": ["vos"],
+        "verbs": [
+          { "infinitive": "hablar", "en": "to speak", "type": "AR", "vos": "hablás" },
+          { "infinitive": "tomar", "en": "to drink/take", "type": "AR", "vos": "tomás" },
+          { "infinitive": "trabajar", "en": "to work", "type": "AR", "vos": "trabajás" },
+          { "infinitive": "laburar", "en": "to work (slang)", "type": "AR", "vos": "laburás" },
+          { "infinitive": "morfar", "en": "to eat (slang)", "type": "AR", "vos": "morfás" },
+          { "infinitive": "mirar", "en": "to watch/look", "type": "AR", "vos": "mirás" },
+          { "infinitive": "escuchar", "en": "to listen", "type": "AR", "vos": "escuchás" },
+          { "infinitive": "tener", "en": "to have", "type": "ER", "vos": "tenés" },
+          { "infinitive": "querer", "en": "to want", "type": "ER", "vos": "querés" },
+          { "infinitive": "poder", "en": "to be able to", "type": "ER", "vos": "podés" },
+          { "infinitive": "saber", "en": "to know", "type": "ER", "vos": "sabés" },
+          { "infinitive": "hacer", "en": "to do/make", "type": "ER", "vos": "hacés" },
+          { "infinitive": "comer", "en": "to eat", "type": "ER", "vos": "comés" },
+          { "infinitive": "venir", "en": "to come", "type": "IR", "vos": "venís" },
+          { "infinitive": "vivir", "en": "to live", "type": "IR", "vos": "vivís" },
+          { "infinitive": "salir", "en": "to go out", "type": "IR", "vos": "salís" },
+          { "infinitive": "ir", "en": "to go", "type": "irregular", "vos": "vas" },
+          { "infinitive": "ser", "en": "to be (permanent)", "type": "irregular", "vos": "sos" },
+          { "infinitive": "estar", "en": "to be (temporary)", "type": "irregular", "vos": "estás" },
+          { "infinitive": "decir", "en": "to say/tell", "type": "irregular", "vos": "decís" }
+        ]
+      },
+      "2": {
+        "name": "Full Present Tense",
+        "rule": "All pronouns: yo, vos, él/ella, nosotros, ellos. Note: vosotros is NOT used in Rioplatense — skip it entirely. Vos replaces tú.",
+        "pronouns": ["yo", "vos", "él/ella", "nosotros", "ellos"],
+        "verbs": [
+          { "infinitive": "hablar", "en": "to speak", "type": "AR", "yo": "hablo", "vos": "hablás", "el": "habla", "nosotros": "hablamos", "ellos": "hablan" },
+          { "infinitive": "tomar", "en": "to drink/take", "type": "AR", "yo": "tomo", "vos": "tomás", "el": "toma", "nosotros": "tomamos", "ellos": "toman" },
+          { "infinitive": "laburar", "en": "to work (slang)", "type": "AR", "yo": "laburo", "vos": "laburás", "el": "labura", "nosotros": "laburamos", "ellos": "laburan" },
+          { "infinitive": "morfar", "en": "to eat (slang)", "type": "AR", "yo": "morfo", "vos": "morfás", "el": "morfa", "nosotros": "morfamos", "ellos": "morfan" },
+          { "infinitive": "mirar", "en": "to watch/look", "type": "AR", "yo": "miro", "vos": "mirás", "el": "mira", "nosotros": "miramos", "ellos": "miran" },
+          { "infinitive": "tener", "en": "to have", "type": "ER", "yo": "tengo", "vos": "tenés", "el": "tiene", "nosotros": "tenemos", "ellos": "tienen" },
+          { "infinitive": "querer", "en": "to want", "type": "ER", "yo": "quiero", "vos": "querés", "el": "quiere", "nosotros": "queremos", "ellos": "quieren" },
+          { "infinitive": "poder", "en": "to be able to", "type": "ER", "yo": "puedo", "vos": "podés", "el": "puede", "nosotros": "podemos", "ellos": "pueden" },
+          { "infinitive": "saber", "en": "to know", "type": "ER", "yo": "sé", "vos": "sabés", "el": "sabe", "nosotros": "sabemos", "ellos": "saben" },
+          { "infinitive": "hacer", "en": "to do/make", "type": "ER", "yo": "hago", "vos": "hacés", "el": "hace", "nosotros": "hacemos", "ellos": "hacen" },
+          { "infinitive": "comer", "en": "to eat", "type": "ER", "yo": "como", "vos": "comés", "el": "come", "nosotros": "comemos", "ellos": "comen" },
+          { "infinitive": "venir", "en": "to come", "type": "IR", "yo": "vengo", "vos": "venís", "el": "viene", "nosotros": "venimos", "ellos": "vienen" },
+          { "infinitive": "vivir", "en": "to live", "type": "IR", "yo": "vivo", "vos": "vivís", "el": "vive", "nosotros": "vivimos", "ellos": "viven" },
+          { "infinitive": "salir", "en": "to go out", "type": "IR", "yo": "salgo", "vos": "salís", "el": "sale", "nosotros": "salimos", "ellos": "salen" },
+          { "infinitive": "decir", "en": "to say/tell", "type": "irregular", "yo": "digo", "vos": "decís", "el": "dice", "nosotros": "decimos", "ellos": "dicen" },
+          { "infinitive": "ir", "en": "to go", "type": "irregular", "yo": "voy", "vos": "vas", "el": "va", "nosotros": "vamos", "ellos": "van" },
+          { "infinitive": "ser", "en": "to be (permanent)", "type": "irregular", "yo": "soy", "vos": "sos", "el": "es", "nosotros": "somos", "ellos": "son" },
+          { "infinitive": "estar", "en": "to be (temporary)", "type": "irregular", "yo": "estoy", "vos": "estás", "el": "está", "nosotros": "estamos", "ellos": "están" }
+        ]
+      },
+      "3": {
+        "name": "Preterite (Past)",
+        "rule": "Regular -AR: é, aste, ó, amos, aron. Regular -ER/-IR: í, iste, ió, imos, ieron. Many common verbs are irregular — these must be memorised.",
+        "pronouns": ["yo", "vos", "él/ella", "nosotros", "ellos"],
+        "verbs": [
+          { "infinitive": "hablar", "en": "to speak", "type": "AR", "yo": "hablé", "vos": "hablaste", "el": "habló", "nosotros": "hablamos", "ellos": "hablaron" },
+          { "infinitive": "comer", "en": "to eat", "type": "ER", "yo": "comí", "vos": "comiste", "el": "comió", "nosotros": "comimos", "ellos": "comieron" },
+          { "infinitive": "vivir", "en": "to live", "type": "IR", "yo": "viví", "vos": "viviste", "el": "vivió", "nosotros": "vivimos", "ellos": "vivieron" },
+          { "infinitive": "ser/ir", "en": "to be / to go", "type": "irregular", "yo": "fui", "vos": "fuiste", "el": "fue", "nosotros": "fuimos", "ellos": "fueron" },
+          { "infinitive": "tener", "en": "to have", "type": "irregular", "yo": "tuve", "vos": "tuviste", "el": "tuvo", "nosotros": "tuvimos", "ellos": "tuvieron" },
+          { "infinitive": "hacer", "en": "to do/make", "type": "irregular", "yo": "hice", "vos": "hiciste", "el": "hizo", "nosotros": "hicimos", "ellos": "hicieron" },
+          { "infinitive": "querer", "en": "to want", "type": "irregular", "yo": "quise", "vos": "quisiste", "el": "quiso", "nosotros": "quisimos", "ellos": "quisieron" },
+          { "infinitive": "poder", "en": "to be able to", "type": "irregular", "yo": "pude", "vos": "pudiste", "el": "pudo", "nosotros": "pudimos", "ellos": "pudieron" },
+          { "infinitive": "decir", "en": "to say/tell", "type": "irregular", "yo": "dije", "vos": "dijiste", "el": "dijo", "nosotros": "dijimos", "ellos": "dijeron" },
+          { "infinitive": "venir", "en": "to come", "type": "irregular", "yo": "vine", "vos": "viniste", "el": "vino", "nosotros": "vinimos", "ellos": "vinieron" }
+        ]
+      },
+      "4": {
+        "name": "Future Tense",
+        "rule": "Formal future: add endings to infinitive (é, ás, á, emos, án). Some verbs have irregular stems. In everyday Rioplatense, 'ir + a + infinitive' is far more common — learn both but prioritise ir+a.",
+        "pronouns": ["yo (formal)", "vos (ir+a)"],
+        "verbs": [
+          { "infinitive": "hablar", "en": "to speak", "type": "AR", "formal_yo": "hablaré", "ir_a_vos": "vas a hablar", "note": "Regular stem" },
+          { "infinitive": "comer", "en": "to eat", "type": "ER", "formal_yo": "comeré", "ir_a_vos": "vas a comer", "note": "Regular stem" },
+          { "infinitive": "vivir", "en": "to live", "type": "IR", "formal_yo": "viviré", "ir_a_vos": "vas a vivir", "note": "Regular stem" },
+          { "infinitive": "salir", "en": "to go out", "type": "irregular", "formal_yo": "saldré", "ir_a_vos": "vas a salir", "note": "Stem: saldr-" },
+          { "infinitive": "tener", "en": "to have", "type": "irregular", "formal_yo": "tendré", "ir_a_vos": "vas a tener", "note": "Stem: tendr-" },
+          { "infinitive": "hacer", "en": "to do/make", "type": "irregular", "formal_yo": "haré", "ir_a_vos": "vas a hacer", "note": "Stem: har-" },
+          { "infinitive": "poder", "en": "to be able to", "type": "irregular", "formal_yo": "podré", "ir_a_vos": "vas a poder", "note": "Stem: podr-" },
+          { "infinitive": "venir", "en": "to come", "type": "irregular", "formal_yo": "vendré", "ir_a_vos": "vas a venir", "note": "Stem: vendr-" },
+          { "infinitive": "decir", "en": "to say/tell", "type": "irregular", "formal_yo": "diré", "ir_a_vos": "vas a decir", "note": "Stem: dir-" }
+        ]
+      },
+      "5": {
+        "name": "Present Subjunctive",
+        "rule": "Used after: Espero que... / Quiero que... / Es importante que... -AR verbs get -ER endings and vice versa. Many common verbs are irregular.",
+        "pronouns": ["yo", "vos", "él/ella", "nosotros", "ellos"],
+        "triggers": ["Espero que", "Quiero que", "Es importante que", "Necesito que"],
+        "verbs": [
+          { "infinitive": "hablar", "en": "to speak", "type": "AR", "yo": "hable", "vos": "hables", "el": "hable", "nosotros": "hablemos", "ellos": "hablen" },
+          { "infinitive": "comer", "en": "to eat", "type": "ER", "yo": "coma", "vos": "comas", "el": "coma", "nosotros": "comamos", "ellos": "coman" },
+          { "infinitive": "vivir", "en": "to live", "type": "IR", "yo": "viva", "vos": "vivas", "el": "viva", "nosotros": "vivamos", "ellos": "vivan" },
+          { "infinitive": "tener", "en": "to have", "type": "irregular", "yo": "tenga", "vos": "tengas", "el": "tenga", "nosotros": "tengamos", "ellos": "tengan" },
+          { "infinitive": "ir", "en": "to go", "type": "irregular", "yo": "vaya", "vos": "vayas", "el": "vaya", "nosotros": "vayamos", "ellos": "vayan" },
+          { "infinitive": "ser", "en": "to be", "type": "irregular", "yo": "sea", "vos": "seas", "el": "sea", "nosotros": "seamos", "ellos": "sean" },
+          { "infinitive": "hacer", "en": "to do/make", "type": "irregular", "yo": "haga", "vos": "hagas", "el": "haga", "nosotros": "hagamos", "ellos": "hagan" },
+          { "infinitive": "poder", "en": "to be able to", "type": "irregular", "yo": "pueda", "vos": "puedas", "el": "pueda", "nosotros": "podamos", "ellos": "puedan" }
+        ]
+      }
+    }
+  },
+  "grammar": {
+    "topics": {
+      "1": {
+        "name": "Ser vs Estar",
+        "rule": "SER = permanent identity (nationality, character, profession). ESTAR = temporary state, feeling, or location. When in doubt: if it can change, use estar.",
+        "sentences": [
+          { "sentence": "Ese pibe ___ muy copado.", "answer": "es", "en": "That guy is really cool.", "note": "Permanent personality trait → ser" },
+          { "sentence": "¿Cómo ___ vos hoy?", "answer": "estás", "en": "How are you today?", "note": "Temporary state → estar" },
+          { "sentence": "El asado ___ listo.", "answer": "está", "en": "The asado is ready.", "note": "Temporary condition → estar" },
+          { "sentence": "Nosotros ___ argentinos.", "answer": "somos", "en": "We are Argentine.", "note": "Nationality → ser" },
+          { "sentence": "El laburo ___ muy lejos.", "answer": "está", "en": "The job is very far.", "note": "Location → estar" },
+          { "sentence": "Ella ___ una mina re copada.", "answer": "es", "en": "She is a really cool girl.", "note": "Character trait → ser" },
+          { "sentence": "¿Dónde ___ el quilombo?", "answer": "está", "en": "Where is the mess?", "note": "Location → estar" },
+          { "sentence": "Hoy ___ cansado, che.", "answer": "estoy", "en": "I'm tired today, man.", "note": "Temporary feeling → estar" }
+        ]
+      },
+      "2": {
+        "name": "Gender Agreement",
+        "rule": "Nouns and adjectives must match in gender. -o = masculine, -a = feminine. Adjectives ending in -e don't change. The article (el/la) signals gender.",
+        "sentences": [
+          { "sentence": "Es un pibe muy copad___.", "answer": "o", "en": "He's a very cool guy.", "note": "Pibe is masculine → copado" },
+          { "sentence": "Es una mina muy copad___.", "answer": "a", "en": "She's a very cool girl.", "note": "Mina is feminine → copada" },
+          { "sentence": "Tengo much___ fiaca.", "answer": "a", "en": "I really can't be bothered.", "note": "Fiaca is feminine → mucha" },
+          { "sentence": "Es un quilombo muy grand___.", "answer": "e", "en": "It's a very big mess.", "note": "Grande doesn't change with gender" },
+          { "sentence": "El laburo es dur___.", "answer": "o", "en": "The work is hard.", "note": "Laburo is masculine → duro" },
+          { "sentence": "La guita es necesari___.", "answer": "a", "en": "Money is necessary.", "note": "Guita is feminine → necesaria" },
+          { "sentence": "Tiene buen___ onda.", "answer": "a", "en": "Has good vibes.", "note": "Onda is feminine → buena" },
+          { "sentence": "Es una noche hermos___.", "answer": "a", "en": "It's a beautiful night.", "note": "Noche is feminine → hermosa" }
+        ]
+      },
+      "3": {
+        "name": "Reflexive Verbs",
+        "rule": "Reflexive verbs need a pronoun matching the subject: yo→me, vos→te, él/ella→se, nosotros→nos, ellos→se. The pronoun goes before the conjugated verb.",
+        "sentences": [
+          { "sentence": "___ llamo Juan.", "answer": "Me", "en": "My name is Juan.", "note": "Yo → me" },
+          { "sentence": "¿Cómo ___ llamás vos?", "answer": "te", "en": "What's your name?", "note": "Vos → te" },
+          { "sentence": "Él ___ fue sin decir nada.", "answer": "se", "en": "He left without saying anything.", "note": "Él → se" },
+          { "sentence": "___ quedé en casa.", "answer": "Me", "en": "I stayed home.", "note": "Quedarse → yo me quedé" },
+          { "sentence": "Vos ___ enojás por nada.", "answer": "te", "en": "You get angry over nothing.", "note": "Vos → te" },
+          { "sentence": "Ella ___ olvidó el laburo.", "answer": "se", "en": "She forgot about work.", "note": "Olvidarse → ella se olvidó" },
+          { "sentence": "¿A qué hora ___ despertás?", "answer": "te", "en": "What time do you wake up?", "note": "Despertarse → vos te despertás" },
+          { "sentence": "Nosotros ___ divertimos re bien.", "answer": "nos", "en": "We had a really good time.", "note": "Divertirse → nosotros nos divertimos" }
+        ]
+      },
+      "4": {
+        "name": "Object Pronouns",
+        "rule": "Direct: lo/la (it/him/her), los/las (them). Indirect: le (to him/her), les (to them). Replace the noun to sound natural. Indirect objects refer to the person receiving the action.",
+        "sentences": [
+          { "sentence": "¿Viste la peli? Sí, ___ vi.", "answer": "la", "en": "Did you see the film? Yes, I saw it.", "note": "La peli is feminine → la" },
+          { "sentence": "¿Tenés el libro? Sí, ___ tengo.", "answer": "lo", "en": "Do you have the book? Yes, I have it.", "note": "El libro is masculine → lo" },
+          { "sentence": "___ dije la verdad a ella.", "answer": "Le", "en": "I told her the truth.", "note": "Indirect object (to her) → le" },
+          { "sentence": "¿Llamaste a los pibes? Sí, ___ llamé.", "answer": "los", "en": "Did you call the guys? Yes, I called them.", "note": "Los pibes, masculine plural → los" },
+          { "sentence": "¿___ contaste el quilombo?", "answer": "Le", "en": "Did you tell him/her about the mess?", "note": "Indirect object → le" },
+          { "sentence": "Las fotos son buenas. ¿___ mandás?", "answer": "Las", "en": "The photos are good. Will you send them?", "note": "Las fotos, feminine plural → las" }
+        ]
+      },
+      "5": {
+        "name": "Por vs Para",
+        "rule": "PARA = purpose, destination, deadline, recipient. POR = cause/reason, duration, exchange, on behalf of, time of day. When in doubt: para points forward (goal), por looks back (reason).",
+        "sentences": [
+          { "sentence": "Laburo ___ ganar guita.", "answer": "para", "en": "I work to earn money.", "note": "Purpose → para" },
+          { "sentence": "Te llamo ___ la tarde.", "answer": "por", "en": "I'll call you in the afternoon.", "note": "Time period → por" },
+          { "sentence": "Este regalo es ___ vos.", "answer": "para", "en": "This gift is for you.", "note": "Recipient → para" },
+          { "sentence": "Salimos ___ Buenos Aires mañana.", "answer": "para", "en": "We leave for Buenos Aires tomorrow.", "note": "Destination → para" },
+          { "sentence": "___ eso no vine.", "answer": "Por", "en": "That's why I didn't come.", "note": "Reason/cause → por" },
+          { "sentence": "Lo hice ___ vos, che.", "answer": "por", "en": "I did it for you, man.", "note": "On behalf of → por" },
+          { "sentence": "Necesito terminarlo ___ el lunes.", "answer": "para", "en": "I need to finish it by Monday.", "note": "Deadline → para" },
+          { "sentence": "Estuvimos en el bar ___ dos horas.", "answer": "por", "en": "We were at the bar for two hours.", "note": "Duration → por" }
+        ]
+      },
+      "6": {
+        "name": "Voseo Imperative",
+        "rule": "Commands with vos: take the infinitive, drop the r, add an accent on the last syllable. hablar → hablá, venir → vení, comer → comé. A few common verbs are irregular.",
+        "sentences": [
+          { "sentence": "Hablar → ¡___ más despacio!", "answer": "Hablá", "en": "Speak more slowly!", "note": "hablar → hablá" },
+          { "sentence": "Venir → ¡___ acá!", "answer": "Vení", "en": "Come here!", "note": "venir → vení" },
+          { "sentence": "Escuchar → ¡___ esto!", "answer": "Escuchá", "en": "Listen to this!", "note": "escuchar → escuchá" },
+          { "sentence": "Mirar → ¡___ eso!", "answer": "Mirá", "en": "Look at that!", "note": "mirar → mirá" },
+          { "sentence": "Comer → ¡___ algo!", "answer": "Comé", "en": "Eat something!", "note": "comer → comé" },
+          { "sentence": "Decir → ¡___ la verdad!", "answer": "Decí", "en": "Tell the truth!", "note": "decir → decí (irregular)" },
+          { "sentence": "Salir → ¡___ de acá!", "answer": "Salí", "en": "Get out of here!", "note": "salir → salí" },
+          { "sentence": "Ir → ¡___ a morfar!", "answer": "Andá", "en": "Go eat!", "note": "ir → andá (irregular, from andar)" }
+        ]
+      }
+    }
+  }
+}

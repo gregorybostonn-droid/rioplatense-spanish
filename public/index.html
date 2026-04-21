@@ -505,7 +505,7 @@ function speak(text) {
 }
 
 function speakBtn(text) {
-  return `<button class="speak-btn" onclick="speak(${JSON.stringify(text)})" title="Listen">🔊</button>`;
+  return `<button class="speak-btn" onclick="speak(${JSON.stringify(text).replace(/"/g, '&quot;')})" title="Listen">🔊</button>`;
 }
 
 function normalize(str) {
